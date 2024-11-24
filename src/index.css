@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+select option:disabled .champion{
+    filter: grayscale(1);
+    color: gray;
+  }
+  

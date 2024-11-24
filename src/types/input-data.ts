@@ -1,0 +1,1 @@
+export type InputData<T> = Omit<T, 'id'> ;
