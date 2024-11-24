@@ -1,18 +1,20 @@
 // src/api/axiosInstance.js
 import axios from 'axios';
 
-const rawEnv = import.meta.env.VITE_ENVIRONMENT;
+const env = import.meta.env.VITE_ENVIRONMENT;
 
 type Environment = 'development' | 'production';
 
-const getEnvValue = (env: unknown): env is Environment => {
+const isDevOrProd = (env: unknown): env is Environment => {
   if (!env || (env !== 'development' && env !== 'production')) {
     return false;
   }
   return true;
 }
 
-const env: Environment = getEnvValue(rawEnv) ? rawEnv : 'development';
+if(!isDevOrProd(env)) {
+  throw new Error('Invalid environment');
+}
 
 
 let apiUrl = 'http://localhost:8000'
