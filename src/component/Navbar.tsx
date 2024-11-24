@@ -1,11 +1,11 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React from "react"
+import { Link, useLocation } from "react-router-dom"
 
 export const Navbar: React.FC = () => {
-  const location = useLocation();
+  const location = useLocation()
 
   // Helper function to determine if a link is active
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => location.pathname === path
 
   return (
     <nav className="bg-white border-b border-gray-200">
@@ -23,9 +23,9 @@ export const Navbar: React.FC = () => {
             <Link
               to="/new"
               className={`px-3 py-2 rounded-md text-sm font-medium ${
-                isActive('/new')
-                  ? 'text-blue-600 font-semibold'
-                  : 'text-gray-800 hover:text-blue-600'
+                isActive("/new")
+                  ? "text-blue-600 font-semibold"
+                  : "text-gray-800 hover:text-blue-600"
               }`}
             >
               Registrar partida
@@ -33,12 +33,12 @@ export const Navbar: React.FC = () => {
             <Link
               to="/new-player"
               className={`px-3 py-2 rounded-md text-sm font-medium ${
-                isActive('/new-player')
-                  ? 'text-blue-600 font-semibold'
-                  : 'text-gray-800 hover:text-blue-600'
+                isActive("/new-player")
+                  ? "text-blue-600 font-semibold"
+                  : "text-gray-800 hover:text-blue-600"
               }`}
             >
-              Novo jogador
+              Adicionar jogador
             </Link>
           </div>
 
@@ -50,8 +50,8 @@ export const Navbar: React.FC = () => {
               aria-expanded="false"
               aria-label="Toggle navigation"
               onClick={() => {
-                const menu = document.getElementById('mobile-menu');
-                menu?.classList.toggle('hidden');
+                const menu = document.getElementById("mobile-menu")
+                menu?.classList.toggle("hidden")
               }}
             >
               <svg
@@ -80,25 +80,25 @@ export const Navbar: React.FC = () => {
           <Link
             to="/new"
             className={`block px-3 py-2 rounded-md text-base font-medium ${
-              isActive('/new')
-                ? 'text-blue-600 font-semibold'
-                : 'text-gray-800 hover:text-blue-600'
+              isActive("/new")
+                ? "text-blue-600 font-semibold"
+                : "text-gray-800 hover:text-blue-600"
             }`}
           >
-            New
+            Registrar partida
           </Link>
           <Link
             to="/new-player"
             className={`block px-3 py-2 rounded-md text-base font-medium ${
-              isActive('/new-player')
-                ? 'text-blue-600 font-semibold'
-                : 'text-gray-800 hover:text-blue-600'
+              isActive("/new-player")
+                ? "text-blue-600 font-semibold"
+                : "text-gray-800 hover:text-blue-600"
             }`}
           >
-            New Player
+            Adicionar jogador
           </Link>
         </div>
       </div>
     </nav>
-  );
-};
+  )
+}
