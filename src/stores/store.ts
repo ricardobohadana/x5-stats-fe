@@ -10,6 +10,10 @@ interface GlobalState {
   isLoading: boolean;
   showLoading: () => void;
   hideLoading: () => void;
+  hasError: boolean;
+  errorMessage?: string;
+  showError: (message?: string) => void;
+  hideError: () => void;
 }
 
 export const useGlobalStore = create<GlobalState>((set) => ({
@@ -32,4 +36,8 @@ export const useGlobalStore = create<GlobalState>((set) => ({
   isLoading: false,
   showLoading: () => set(() => ({ isLoading: true })),
   hideLoading: () => set(() => ({ isLoading: false })),
+  hasError: false,
+  errorMessage: 'Desculpe pela inconveniência, tente novamente em alguns instantes.',
+  showError: (message) => set(() => ({ hasError: true, isLoading: false, errorMessage: message })),
+  hideError: () => set(() => ({ hasError: false })),
 }));

@@ -10,11 +10,14 @@ import { ToastContainer } from "react-toastify"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import LoadingOverlay from "./component/LoadingOverlay"
 import { useGlobalStore } from "./stores/store"
+import { ErrorOverlay } from "./component/ErrorOverlay"
 
 const queryClient = new QueryClient()
 
 function App() {
   const isLoading = useGlobalStore((state) => state.isLoading)
+  const hasError = useGlobalStore((state) => state.hasError)
+  const errorMessage = useGlobalStore((state) => state.errorMessage)
   return (
     <div>
       <QueryClientProvider client={queryClient}>
@@ -35,6 +38,7 @@ function App() {
         </Routes>
         <ToastContainer />
         <LoadingOverlay isLoading={isLoading} />
+        <ErrorOverlay hasError={hasError} errorMessage={errorMessage} />
       </QueryClientProvider>
     </div>
   )
