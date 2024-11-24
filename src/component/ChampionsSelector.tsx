@@ -18,6 +18,8 @@ export const ChampionSelector: React.FC = () => {
   const { data: champions } = useChampions()
   const [goldBlue, setGoldBlue] = useState<number>(0)
   const [goldRed, setGoldRed] = useState<number>(0)
+  const [killsBlue, setKillsBlue] = useState<number>(0)
+  const [killsRed, setKillsRed] = useState<number>(0)
   const [duration, setDuration] = useState<number>(0)
   const [winningTeam, setWinningTeam] = useState<Team>(Team.BLUE)
   const [filteredChampions, setFilteredChampions] = useState(champions)
@@ -94,6 +96,8 @@ export const ChampionSelector: React.FC = () => {
         winningTeam,
         goldBlue,
         goldRed,
+        killsBlue,
+        killsRed,
       })
       const response = await gameService.create(game)
       const gameId = response.id
@@ -160,29 +164,37 @@ export const ChampionSelector: React.FC = () => {
             <option value={Team.BLUE}>Azul</option>
             <option value={Team.RED}>Vermelho</option>
           </select>
-          <label
-            htmlFor="goldBlue"
-            className="text-sm font-medium text-gray-700"
-          >
-            Ouro do Time Azul:
-          </label>
-          <ThousandInput
-            value={goldBlue}
-            onChange={setGoldBlue}
-            className="py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm w-24"
-          />
+          <div className="grid grid-cols-3 gap-4 items-center">
+            <div></div>
+            <div className="text-sm font-medium text-gray-700">Ouro</div>
+            <div className="text-sm font-medium text-gray-700">Kills</div>
 
-          <label
-            htmlFor="goldRed"
-            className="text-sm font-medium text-gray-700"
-          >
-            Ouro do Time Vermelho:
-          </label>
-          <ThousandInput
-            value={goldRed}
-            onChange={setGoldRed}
-            className="py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm w-24"
-          />
+            <div className="text-sm font-medium text-gray-700">Time Azul</div>
+            <ThousandInput
+              value={goldBlue}
+              onChange={setGoldBlue}
+              className="py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm w-24"
+            />
+            <ThousandInput
+              value={killsBlue}
+              onChange={setKillsBlue}
+              className="py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm w-24"
+            />
+
+            <div className="text-sm font-medium text-gray-700">
+              Time Vermelho
+            </div>
+            <ThousandInput
+              value={goldRed}
+              onChange={setGoldRed}
+              className="py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm w-24"
+            />
+            <ThousandInput
+              value={killsRed}
+              onChange={setKillsRed}
+              className="py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm w-24"
+            />
+          </div>
           <div className="flex-grow"></div>
           <button
             onClick={handleSubmitGame}

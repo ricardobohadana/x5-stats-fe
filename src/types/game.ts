@@ -9,6 +9,8 @@ export interface Game extends Base {
   duration: number; // in seconds
   goldBlue?: number;
   goldRed?: number;
+  killsBlue?: number;
+  killsRed?: number;
   players?: string[]; // 10 players
 }
 

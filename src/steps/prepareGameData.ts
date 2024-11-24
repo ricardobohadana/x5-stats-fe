@@ -10,8 +10,10 @@ interface PrepareGameDataInput {
   winningTeam: string;
   goldBlue?: number;
   goldRed?: number;
+  killsBlue?: number;
+  killsRed?: number;
 }
-export const prepareGameData = ({date, players, duration, winningTeam, goldBlue, goldRed}: PrepareGameDataInput) => {
+export const prepareGameData = ({date, players, duration, winningTeam, goldBlue, goldRed, killsBlue, killsRed}: PrepareGameDataInput) => {
 
   let message = '';
 
@@ -37,6 +39,8 @@ export const prepareGameData = ({date, players, duration, winningTeam, goldBlue,
     duration,
     goldBlue,
     goldRed,
+    killsBlue,
+    killsRed,
     players
   }
   return gameData;

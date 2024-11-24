@@ -12,6 +12,8 @@ export interface AveragePlayerStatistic {
   readonly winRate:            number;
   readonly blueWinRate:        number;
   readonly redWinRate:         number;
+  readonly avgKillParticipation: number | null;
+  readonly avgGoldShare: number | null;
 }
 
 

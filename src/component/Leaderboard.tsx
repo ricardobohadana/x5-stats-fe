@@ -4,9 +4,11 @@ import { useStats } from "../hooks/useStats"
 import { useGlobalStore } from "../stores/store"
 import { Player } from "../types/player"
 
-export const KdaLeaderboard: React.FC = () => {
+export const Leaderboard: React.FC = () => {
   const showLoading = useGlobalStore((state) => state.showLoading)
   const hideLoading = useGlobalStore((state) => state.hideLoading)
+  const showError = useGlobalStore((state) => state.showError)
+  const hideError = useGlobalStore((state) => state.hideError)
   const { data: stats, isLoading: statsLoading, isError: error1 } = useStats()
   const {
     data: players,
@@ -14,6 +16,15 @@ export const KdaLeaderboard: React.FC = () => {
     isError: error2,
   } = usePlayers()
   const isGlobalLoading = statsLoading || playersLoading
+  const isError = error1 || error2
+
+  useEffect(() => {
+    if (isError) {
+      showError()
+    } else {
+      hideError()
+    }
+  }, [isError, showError, hideError])
 
   useEffect(() => {
     if (isGlobalLoading) {
@@ -54,19 +65,19 @@ export const KdaLeaderboard: React.FC = () => {
               scope="col"
               className="px-2 py-1 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
-              Abates
+              Abates/jogo
             </th>
             <th
               scope="col"
               className="px-2 py-1 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
-              Mortes
+              Mortes/jogo
             </th>
             <th
               scope="col"
               className="px-2 py-1 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
-              Assistências
+              Assistências/jogo
             </th>
             <th
               scope="col"
@@ -74,7 +85,18 @@ export const KdaLeaderboard: React.FC = () => {
             >
               KDA
             </th>
-
+            <th
+              scope="col"
+              className="px-2 py-1 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Participação em abates/jogo
+            </th>
+            <th
+              scope="col"
+              className="px-2 py-1 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Participação em ouro/jogo
+            </th>
             <th
               scope="col"
               className="px-2 py-1 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -136,13 +158,19 @@ export const KdaLeaderboard: React.FC = () => {
                 {stat.avgKda.toFixed(2)}
               </td>
               <td className="px-2 py-1 whitespace-nowrap text-right">
-                {stat.avgCsPerMinute.toFixed(2)}/min
+                {stat.avgKillParticipation?.toFixed(0)} %
               </td>
               <td className="px-2 py-1 whitespace-nowrap text-right">
-                {stat.avgGoldPerMinute.toFixed(2)}/min
+                {stat.avgGoldShare?.toFixed(0)} %
               </td>
               <td className="px-2 py-1 whitespace-nowrap text-right">
-                {stat.avgDamagePerMinute.toFixed(2)}/min
+                {stat.avgCsPerMinute.toFixed(0)}/min
+              </td>
+              <td className="px-2 py-1 whitespace-nowrap text-right">
+                {stat.avgGoldPerMinute.toFixed(0)}/min
+              </td>
+              <td className="px-2 py-1 whitespace-nowrap text-right">
+                {stat.avgDamagePerMinute.toFixed(0)}/min
               </td>
               <td className="px-2 py-1 whitespace-nowrap text-right">
                 {(stat.winRate * 100).toFixed(0)}%
