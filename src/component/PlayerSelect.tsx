@@ -76,7 +76,7 @@ export const PlayerSelect: React.FC<PlayerSelectProps> = ({
         </ul>
       )}
       {selectedOption && (
-        <div className="grid grid-cols-4 grid-rows-2 gap-1">
+        <div className="grid grid-cols-4 grid-rows-2 gap-1  ">
           {playerPerformanceProperties.map((property) => (
             <div className={`col-span-${property.colSpan}`}>
               <label className="text-xs font-light">{property.label}</label>
