@@ -8,7 +8,6 @@ import { preparePerformanceData } from "../steps/preparePerformanceData"
 import { ThousandInput } from "./ThousandInput"
 import { notify } from "../api/notify"
 import { gameService } from "../api/games"
-import { gamePerformanceService } from "../api/game-performance"
 import { useGlobalStore } from "../stores/store"
 
 export const ChampionSelector: React.FC = () => {
@@ -96,17 +95,12 @@ export const ChampionSelector: React.FC = () => {
         killsBlue,
         killsRed,
       })
-      const response = await gameService.create(game)
-      const gameId = response.id
-      const performances = preparePerformanceData({
-        gameId,
+      const gamePerformances = preparePerformanceData({
         players: selectedPlayers,
         championsIds: selectedChampions.map((id) => id ?? -1),
       })
-      performances.forEach(async (performance) => {
-        console.log(performance)
-        await gamePerformanceService.create(performance)
-      })
+      const input = { ...game, gamePerformances }
+      await gameService.create(input)
       notify("Partida salva com sucesso", "success")
       resetForm()
     } catch {

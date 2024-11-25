@@ -5,6 +5,11 @@ import { Game, isGame } from "../types/game";
 import { InputData } from "../types/input-data";
 import { api } from "./axios";
 import { notify } from "./notify";
+import { GamePerformance } from "../types/game-performance";
+
+interface CreateGameInput extends InputData<Game>{
+  gamePerformances: InputData<Omit<GamePerformance, 'gameId'>>[];
+}
 
 export const gameService = {
   getAll: async () => {
@@ -25,7 +30,7 @@ export const gameService = {
     return response.data;
   },
 
-  create: async (gameData: InputData<Game>) => {
+  create: async (gameData: CreateGameInput) => {
     try {
       const response = await api.post('games/', gameData);
       const createdGame = response.data;
