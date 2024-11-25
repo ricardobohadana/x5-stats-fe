@@ -16,6 +16,7 @@ export const ChampionSelector: React.FC = () => {
   const resetPerformances = useGlobalStore((state) => state.resetPerformances)
 
   const { data: champions } = useChampions()
+  const [date, setDate] = useState("")
   const [goldBlue, setGoldBlue] = useState<number>(0)
   const [goldRed, setGoldRed] = useState<number>(0)
   const [killsBlue, setKillsBlue] = useState<number>(0)
@@ -32,7 +33,6 @@ export const ChampionSelector: React.FC = () => {
     if (champions) setFilteredChampions(champions.slice(1))
   }, [champions])
 
-  const [date, setDate] = useState("")
   const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDate(event.target.value)
   }
@@ -111,7 +111,7 @@ export const ChampionSelector: React.FC = () => {
   }
 
   const resetForm = () => {
-    setDate("")
+    setDate("00:00")
     setGoldBlue(0)
     setGoldRed(0)
     setKillsBlue(0)
