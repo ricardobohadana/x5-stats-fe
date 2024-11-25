@@ -12,10 +12,10 @@ export const preparePerformanceData = (preparePerformanceDataInput: preparePerfo
   const performances = useGlobalStore.getState().performances;
   const lanes = Object.values(Lane);
 
-  return players.map((player, index) => {
+  return performances.map((performance, index) => {
     return {
-      ...performances[index],
-      playerId: player,
+      ...performance,
+      playerId: players[index],
       championId: championsIds[index],
       gameLane: lanes[index % 5],
       team: index < 5 ? Team.BLUE : Team.RED

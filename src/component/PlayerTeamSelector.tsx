@@ -54,7 +54,6 @@ export const PlayerTeamSelector: React.FC<PlayerTeamSelectorProps> = ({
                   />
                   <img src={positionUrlBuilder(index)} className="w-16 h-16" />
                   <PlayerSelect
-                    key={index}
                     unavailableOptionsIds={selectedPlayers}
                     selectPlayer={selectPlayer}
                     index={index}
@@ -63,7 +62,6 @@ export const PlayerTeamSelector: React.FC<PlayerTeamSelectorProps> = ({
               ) : (
                 <>
                   <PlayerSelect
-                    key={index}
                     unavailableOptionsIds={selectedPlayers}
                     selectPlayer={selectPlayer}
                     index={index}

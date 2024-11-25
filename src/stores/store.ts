@@ -17,7 +17,7 @@ interface GlobalState {
   hideError: () => void;
 }
 
-const initialPerformancesState = Array(10).fill({
+const initialPerformancesState: NewGamePerformance[] = Array(10).fill({
   kills: 0,
   deaths: 0,
   assists: 0,
@@ -30,7 +30,7 @@ const initialPerformancesState = Array(10).fill({
 export const useGlobalStore = create<GlobalState>((set) => ({
   champions: [],
   setChampions: (champions) => set(() => ({ champions })),
-  performances: Array(10).fill(initialPerformancesState),
+  performances: initialPerformancesState,
   resetPerformances: () => set(() => ({ performances: initialPerformancesState })),
   setPerformances: (performances, index) => set((state) => {
     const newPerformances = [...state.performances];
