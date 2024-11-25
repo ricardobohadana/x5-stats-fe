@@ -19,6 +19,7 @@ interface PlayerTeamSelectorProps {
   setSelectedIndex: (index: number) => void
   blue: boolean
   unselectChampion: (selectedIndex: number, index: number) => void
+  red: boolean
 }
 
 export const PlayerTeamSelector: React.FC<PlayerTeamSelectorProps> = ({
@@ -29,6 +30,7 @@ export const PlayerTeamSelector: React.FC<PlayerTeamSelectorProps> = ({
   setSelectedIndex,
   selectPlayer,
   unselectChampion,
+  red,
 }) => {
   const condition = (index: number) => (blue ? index < 5 : index >= 5)
   return (
@@ -43,18 +45,37 @@ export const PlayerTeamSelector: React.FC<PlayerTeamSelectorProps> = ({
               }`}
               onClick={() => setSelectedIndex(index)}
             >
-              <PlayerSelect
-                key={index}
-                unavailableOptionsIds={selectedPlayers}
-                selectPlayer={selectPlayer}
-                index={index}
-              />
-              <img src={positionUrlBuilder(index)} className="w-16 h-16" />
-              <img
-                src={getChampionIconUrl(championId)}
-                className="w-16 h-16"
-                onClick={() => unselectChampion(selectedIndex, index)}
-              />
+              {red ? (
+                <>
+                  <img
+                    src={getChampionIconUrl(championId)}
+                    className="w-16 h-16"
+                    onClick={() => unselectChampion(selectedIndex, index)}
+                  />
+                  <img src={positionUrlBuilder(index)} className="w-16 h-16" />
+                  <PlayerSelect
+                    key={index}
+                    unavailableOptionsIds={selectedPlayers}
+                    selectPlayer={selectPlayer}
+                    index={index}
+                  />
+                </>
+              ) : (
+                <>
+                  <PlayerSelect
+                    key={index}
+                    unavailableOptionsIds={selectedPlayers}
+                    selectPlayer={selectPlayer}
+                    index={index}
+                  />
+                  <img src={positionUrlBuilder(index)} className="w-16 h-16" />
+                  <img
+                    src={getChampionIconUrl(championId)}
+                    className="w-16 h-16"
+                    onClick={() => unselectChampion(selectedIndex, index)}
+                  />
+                </>
+              )}
             </div>
           )
       )}

@@ -14,6 +14,7 @@ import { useGlobalStore } from "../stores/store"
 export const ChampionSelector: React.FC = () => {
   const showLoading = useGlobalStore((state) => state.showLoading)
   const hideLoading = useGlobalStore((state) => state.hideLoading)
+  const resetPerformances = useGlobalStore((state) => state.resetPerformances)
 
   const { data: champions } = useChampions()
   const [goldBlue, setGoldBlue] = useState<number>(0)
@@ -46,7 +47,6 @@ export const ChampionSelector: React.FC = () => {
       newPlayers[selectedIndex] = id
       return newPlayers
     })
-    clearChampionsSearch()
   }
 
   const handleUnselectChampion = (selectedIndex: number, index: number) => {
@@ -66,9 +66,6 @@ export const ChampionSelector: React.FC = () => {
     setDuration(totalSeconds)
   }
 
-  const clearChampionsSearch = () => {
-    setFilteredChampions(champions?.slice(1))
-  }
   const handleChampionNameSearch = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -111,11 +108,26 @@ export const ChampionSelector: React.FC = () => {
         await gamePerformanceService.create(performance)
       })
       notify("Partida salva com sucesso", "success")
+      resetForm()
     } catch {
       notify("Erro ao salvar a partida", "error")
     } finally {
       hideLoading()
     }
+  }
+
+  const resetForm = () => {
+    setDate("")
+    setGoldBlue(0)
+    setGoldRed(0)
+    setKillsBlue(0)
+    setKillsRed(0)
+    setDuration(0)
+    setWinningTeam(Team.BLUE)
+    setSelectedPlayers([])
+    setSelectedIndex(0)
+    setSelectedChampions(Array(10).fill(null))
+    resetPerformances()
   }
 
   return (
@@ -245,6 +257,7 @@ export const ChampionSelector: React.FC = () => {
             setSelectedIndex={setSelectedIndex}
             blue={true}
             unselectChampion={handleUnselectChampion}
+            red={false}
           />
 
           {/* Middle Column */}
@@ -289,6 +302,7 @@ export const ChampionSelector: React.FC = () => {
             setSelectedIndex={setSelectedIndex}
             blue={false}
             unselectChampion={handleUnselectChampion}
+            red={true}
           />
         </div>
       </div>

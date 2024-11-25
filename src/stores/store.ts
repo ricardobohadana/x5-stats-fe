@@ -6,6 +6,7 @@ interface GlobalState {
   champions: Champion[];
   setChampions: (champions: Champion[]) => void;
   performances: NewGamePerformance[];
+  resetPerformances: () => void;
   setPerformances: (performances: NewGamePerformance, index: number) => void;
   isLoading: boolean;
   showLoading: () => void;
@@ -16,18 +17,21 @@ interface GlobalState {
   hideError: () => void;
 }
 
+const initialPerformancesState = Array(10).fill({
+  kills: 0,
+  deaths: 0,
+  assists: 0,
+  gold: 0,
+  cs: 0,
+  damageDealt: 0,
+  visionScore: 0,
+});
+
 export const useGlobalStore = create<GlobalState>((set) => ({
   champions: [],
   setChampions: (champions) => set(() => ({ champions })),
-  performances: Array(10).fill({
-    kills: 0,
-    deaths: 0,
-    assists: 0,
-    gold: 0,
-    cs: 0,
-    damageDealt: 0,
-    visionScore: 0,
-  }),
+  performances: Array(10).fill(initialPerformancesState),
+  resetPerformances: () => set(() => ({ performances: initialPerformancesState })),
   setPerformances: (performances, index) => set((state) => {
     const newPerformances = [...state.performances];
     newPerformances[index] = performances;

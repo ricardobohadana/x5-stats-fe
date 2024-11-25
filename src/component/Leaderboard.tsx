@@ -142,13 +142,13 @@ export const Leaderboard: React.FC = () => {
                 {playersMap?.[stat.playerId]?.gamerTag}
               </td>
               <td className="px-2 py-1 whitespace-nowrap text-right">
-                {stat.avgKills}
+                {stat.avgKills.toFixed(2)}
               </td>
               <td className="px-2 py-1 whitespace-nowrap text-right">
-                {stat.avgDeaths}
+                {stat.avgDeaths.toFixed(2)}
               </td>
               <td className="px-2 py-1 whitespace-nowrap text-right">
-                {stat.avgAssists}
+                {stat.avgAssists.toFixed(2)}
               </td>
               <td
                 className={`px-2 py-1 whitespace-nowrap text-right ${getKdaClass(
@@ -158,10 +158,10 @@ export const Leaderboard: React.FC = () => {
                 {stat.avgKda.toFixed(2)}
               </td>
               <td className="px-2 py-1 whitespace-nowrap text-right">
-                {stat.avgKillParticipation?.toFixed(0)} %
+                {(stat.avgKillParticipation ?? 0 * 100).toFixed(0)} %
               </td>
               <td className="px-2 py-1 whitespace-nowrap text-right">
-                {stat.avgGoldShare?.toFixed(0)} %
+                {(stat.avgGoldShare ?? 0 * 100).toFixed(0)} %
               </td>
               <td className="px-2 py-1 whitespace-nowrap text-right">
                 {stat.avgCsPerMinute.toFixed(0)}/min
