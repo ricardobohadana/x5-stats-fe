@@ -3,6 +3,7 @@ export interface AveragePlayerStatistic {
   readonly avgKda:             number;
   readonly avgGoldPerMinute:   number;
   readonly avgVisionScore:     number;
+  readonly avgVisionScorePerMinute: number;
   readonly avgDamagePerMinute: number;
   readonly avgCsPerMinute:     number;
   readonly avgKills:           number;
