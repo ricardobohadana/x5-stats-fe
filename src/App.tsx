@@ -21,24 +21,26 @@ function App() {
   return (
     <div>
       <QueryClientProvider client={queryClient}>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/new" element={<NewGame />} />
-          <Route path="/new-player" element={<NewPlayer />} />
-          <Route
-            path="*"
-            element={
-              <h1>
-                Not Found{" "}
-                <img height={25} width={25} src={getChampionIconUrl(null)} />
-              </h1>
-            }
-          />
-        </Routes>
-        <ToastContainer />
-        <LoadingOverlay isLoading={isLoading} />
-        <ErrorOverlay hasError={hasError} errorMessage={errorMessage} />
+        <div className="min-h-screen bg-gray-50 ">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/new" element={<NewGame />} />
+            <Route path="/new-player" element={<NewPlayer />} />
+            <Route
+              path="*"
+              element={
+                <h1>
+                  Not Found{" "}
+                  <img height={25} width={25} src={getChampionIconUrl(null)} />
+                </h1>
+              }
+            />
+          </Routes>
+          <ToastContainer />
+          <LoadingOverlay isLoading={isLoading} />
+          <ErrorOverlay hasError={hasError} errorMessage={errorMessage} />
+        </div>
       </QueryClientProvider>
     </div>
   )

@@ -76,9 +76,9 @@ export const PlayerSelect: React.FC<PlayerSelectProps> = ({
         </ul>
       )}
       {selectedOption && (
-        <div className="grid grid-cols-3 grid-rows-2 gap-2 mt-4">
+        <div className="grid grid-cols-4 grid-rows-2 gap-1">
           {playerPerformanceProperties.map((property) => (
-            <div>
+            <div className={`col-span-${property.colSpan}`}>
               <label className="text-xs font-light">{property.label}</label>
               <ThousandInput
                 key={property.key}
@@ -100,29 +100,41 @@ export const PlayerSelect: React.FC<PlayerSelectProps> = ({
 const playerPerformanceProperties: Array<{
   key: keyof NewGamePerformance
   label: string
+  colSpan: number
 }> = [
   {
     key: "kills",
     label: "Abates",
+    colSpan: 1,
   },
   {
     key: "deaths",
     label: "Mortes",
+    colSpan: 1,
   },
   {
     key: "assists",
-    label: "Assistências",
+    label: "Assist.",
+    colSpan: 1,
   },
   {
     key: "cs",
     label: "Farm",
+    colSpan: 1,
   },
   {
     key: "gold",
     label: "Ouro",
+    colSpan: 1,
   },
   {
     key: "damageDealt",
     label: "Dano",
+    colSpan: 1,
+  },
+  {
+    key: "visionScore",
+    label: "Placar de visão",
+    colSpan: 2,
   },
 ]

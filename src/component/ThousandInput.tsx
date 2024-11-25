@@ -32,7 +32,7 @@ export const ThousandInput: React.FC<NumberInputProps> = ({
       placeholder={placeholder}
       value={displayValue}
       onChange={handleChange}
-      className={className}
+      className={className + " text-right"}
     />
   )
 }
