@@ -122,86 +122,112 @@ export const ChampionSelector: React.FC = () => {
     champions && (
       <div className="space-y-1">
         <h2 className="text-xl font-semibold">Dados da partida</h2>
-        <div className="flex flex-row items-center space-x-2 w-full">
-          <label htmlFor="date" className="text-sm font-medium text-gray-700">
-            Data da partida:
-          </label>
-          <input
-            type="date"
-            id="date"
-            value={date}
-            onChange={handleDateChange}
-            className="py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-          />
-
-          <label
-            htmlFor="duration"
-            className="text-sm font-medium text-gray-700"
-          >
-            Duração:
-          </label>
-          <input
-            type="time"
-            id="duration"
-            step="1"
-            defaultValue={"00:00:00"}
-            onChange={handleDurationChange}
-            className="py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm w-32"
-          />
-
-          <label
-            htmlFor="winningTeam"
-            className="text-sm font-medium text-gray-700"
-          >
-            Time Vencedor:
-          </label>
-          <select
-            id="winningTeam"
-            value={winningTeam}
-            onChange={(e) => setWinningTeam(e.target.value as Team)}
-            className="py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm w-24"
-          >
-            <option value={Team.BLUE}>Azul</option>
-            <option value={Team.RED}>Vermelho</option>
-          </select>
-          <div className="grid grid-cols-3 gap-4 items-center">
-            <div></div>
-            <div className="text-sm font-medium text-gray-700">Ouro</div>
-            <div className="text-sm font-medium text-gray-700">Kills</div>
-
-            <div className="text-sm font-medium text-gray-700">Time Azul</div>
+        <div className="grid grid-cols-4 gap-4 w-full">
+          <div className="col-span-1">
+            <label htmlFor="date" className="text-sm font-medium text-gray-700">
+              Data da partida:
+            </label>
+            <input
+              type="date"
+              id="date"
+              value={date}
+              onChange={handleDateChange}
+              className="py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm w-full"
+            />
+          </div>
+          <div className="col-span-1">
+            <label
+              htmlFor="duration"
+              className="text-sm font-medium text-gray-700"
+            >
+              Duração:
+            </label>
+            <input
+              type="time"
+              id="duration"
+              step="1"
+              defaultValue={"00:00:00"}
+              onChange={handleDurationChange}
+              className="py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm w-full"
+            />
+          </div>
+          <div className="col-span-1">
+            <label
+              htmlFor="goldBlue"
+              className="text-sm font-medium text-blue-500"
+            >
+              Ouro Time Azul:
+            </label>
             <ThousandInput
               value={goldBlue}
               onChange={setGoldBlue}
-              className="py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm w-24"
+              className="py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm w-full"
             />
+          </div>
+          <div className="col-span-1">
+            <label
+              htmlFor="killsBlue"
+              className="text-sm font-medium text-blue-500"
+            >
+              Kills Time Azul:
+            </label>
             <ThousandInput
               value={killsBlue}
               onChange={setKillsBlue}
-              className="py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm w-24"
+              className="py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm w-full"
             />
-
-            <div className="text-sm font-medium text-gray-700">
-              Time Vermelho
-            </div>
+          </div>
+          <div className="col-span-1">
+            <label
+              htmlFor="goldRed"
+              className="text-sm font-medium text-red-500"
+            >
+              Ouro Time Vermelho:
+            </label>
             <ThousandInput
               value={goldRed}
               onChange={setGoldRed}
-              className="py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm w-24"
+              className="py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm w-full"
             />
+          </div>
+          <div className="col-span-1">
+            <label
+              htmlFor="killsRed"
+              className="text-sm font-medium text-red-500"
+            >
+              Kills Time Vermelho:
+            </label>
             <ThousandInput
               value={killsRed}
               onChange={setKillsRed}
-              className="py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm w-24"
+              className="py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm w-full"
             />
           </div>
-          <div className="flex-grow"></div>
-          <button
-            onClick={handleSubmitGame}
-            className="py-2 px-4 border border-transparent text-sm font-medium rounded-md w-[200px] text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-          >
-            Salvar
-          </button>
+          <div className="col-span-1">
+            <label
+              htmlFor="winningTeam"
+              className="text-sm font-medium text-gray-700"
+            >
+              Time Vencedor:
+            </label>
+            <select
+              id="winningTeam"
+              value={winningTeam}
+              onChange={(e) => setWinningTeam(e.target.value as Team)}
+              className="py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm w-full"
+            >
+              <option value={Team.BLUE}>Azul</option>
+              <option value={Team.RED}>Vermelho</option>
+            </select>
+          </div>
+          <div className="col-span-1 flex items-end">
+            <button
+              onClick={handleSubmitGame}
+              className="py-2 px-4 border border-transparent text-sm font-medium rounded-md w-full text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              Salvar
+            </button>
+          </div>
         </div>
         <div>
           <h2 className="text-xl font-semibold mt-4">Dados dos jogadores</h2>

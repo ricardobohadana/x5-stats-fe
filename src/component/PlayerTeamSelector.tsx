@@ -39,7 +39,7 @@ export const PlayerTeamSelector: React.FC<PlayerTeamSelectorProps> = ({
             <div
               key={index}
               className={`cursor-pointer flex flex-row justify-around p-2 items-center gap-2 ${
-                selectedIndex === index && "bg-slate-300"
+                selectedIndex === index && "bg-slate-300 rounded-md"
               }`}
               onClick={() => setSelectedIndex(index)}
             >
