@@ -113,56 +113,58 @@ export const LaneLeaderboard: React.FC<LaneLeaderboardProps> = ({
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-          {sortedStats?.slice(0, 5).map((stat) => (
-            <tr key={stat.playerId}>
-              <td className="whitespace-nowrap">
-                {playersMap?.[stat.playerId]?.gamerTag}
-              </td>
-              <td className="whitespace-nowrap text-right">
-                {stat.avgKills.toFixed(2)}
-              </td>
-              <td className="whitespace-nowrap text-right">
-                {stat.avgDeaths.toFixed(2)}
-              </td>
-              <td className="whitespace-nowrap text-right">
-                {stat.avgAssists.toFixed(2)}
-              </td>
-              <td
-                className={`whitespace-nowrap text-right ${getKdaClass(
-                  stat.avgKda
-                )}`}
-              >
-                {stat.avgKda.toFixed(2)}
-              </td>
-              <td className="whitespace-nowrap text-right">
-                {((stat.avgDamageShare ?? 0) * 100).toFixed(0)} %
-              </td>
-              <td className="whitespace-nowrap text-right">
-                {((stat.avgKillParticipation ?? 0) * 100).toFixed(0)} %
-              </td>
-              <td className="whitespace-nowrap text-right">
-                {((stat.avgGoldShare ?? 0) * 100).toFixed(0)} %
-              </td>
-              <td className="whitespace-nowrap text-right">
-                {stat.avgCsPerMinute.toFixed(2)}/min
-              </td>
-              <td className="whitespace-nowrap text-right">
-                {stat.avgGoldPerMinute.toFixed(0)}/min
-              </td>
-              <td className="whitespace-nowrap text-right">
-                {stat.avgDamagePerMinute.toFixed(0)}/min
-              </td>
-              <td className="whitespace-nowrap text-right">
-                {(stat.winRate * 100).toFixed(0)}%
-              </td>
-              <td className="whitespace-nowrap text-right">
-                {(stat.blueWinRate * 100).toFixed(0)}%
-              </td>
-              <td className="whitespace-nowrap text-right">
-                {(stat.redWinRate * 100).toFixed(0)}%
-              </td>
-            </tr>
-          ))}
+          {sortedStats
+            ?.slice(0, Math.min(5, sortedStats.length))
+            .map((stat) => (
+              <tr key={stat.playerId}>
+                <td className="whitespace-nowrap">
+                  {playersMap?.[stat.playerId]?.gamerTag}
+                </td>
+                <td className="whitespace-nowrap text-right">
+                  {stat.avgKills.toFixed(2)}
+                </td>
+                <td className="whitespace-nowrap text-right">
+                  {stat.avgDeaths.toFixed(2)}
+                </td>
+                <td className="whitespace-nowrap text-right">
+                  {stat.avgAssists.toFixed(2)}
+                </td>
+                <td
+                  className={`whitespace-nowrap text-right ${getKdaClass(
+                    stat.avgKda
+                  )}`}
+                >
+                  {stat.avgKda.toFixed(2)}
+                </td>
+                <td className="whitespace-nowrap text-right">
+                  {((stat.avgDamageShare ?? 0) * 100).toFixed(0)} %
+                </td>
+                <td className="whitespace-nowrap text-right">
+                  {((stat.avgKillParticipation ?? 0) * 100).toFixed(0)} %
+                </td>
+                <td className="whitespace-nowrap text-right">
+                  {((stat.avgGoldShare ?? 0) * 100).toFixed(0)} %
+                </td>
+                <td className="whitespace-nowrap text-right">
+                  {stat.avgCsPerMinute.toFixed(2)}/min
+                </td>
+                <td className="whitespace-nowrap text-right">
+                  {stat.avgGoldPerMinute.toFixed(0)}/min
+                </td>
+                <td className="whitespace-nowrap text-right">
+                  {stat.avgDamagePerMinute.toFixed(0)}/min
+                </td>
+                <td className="whitespace-nowrap text-right">
+                  {(stat.winRate * 100).toFixed(0)}%
+                </td>
+                <td className="whitespace-nowrap text-right">
+                  {(stat.blueWinRate * 100).toFixed(0)}%
+                </td>
+                <td className="whitespace-nowrap text-right">
+                  {(stat.redWinRate * 100).toFixed(0)}%
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
