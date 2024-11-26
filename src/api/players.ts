@@ -1,5 +1,6 @@
-import { isAveragePlayerStatistic } from '../types/average-player-statistic';
+import { AveragePlayerStatistic, isAveragePlayerStatistic } from '../types/average-player-statistic';
 import { InputData } from '../types/input-data';
+import { Lane } from '../types/lane';
 import { isPlayer, Player } from '../types/player';
 import { api } from './axios';
 
@@ -49,5 +50,16 @@ export const playerService = {
     }
 
     return response.data;
+  },
+
+  getAllLaneStats: async () => {
+    const response = await api.get('lane-stats');
+    if (typeof response.data !== 'object')
+      throw new Error('Invalid player stats array');
+
+    if(!Object.values(Lane).every((role) => Array.isArray(response.data[role]) && response.data[role].every(isAveragePlayerStatistic)))
+      throw new Error('Invalid player stats data');
+
+    return response.data as Record<Lane, AveragePlayerStatistic[]>;
   }
 };

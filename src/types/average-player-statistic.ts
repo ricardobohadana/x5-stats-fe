@@ -1,5 +1,6 @@
-export interface AveragePlayerStatistic {
+export interface AveragePlayerStatistic extends Record<string, unknown> {
   readonly playerId:           string;
+  readonly gameLane:           string;
   readonly avgKda:             number;
   readonly avgGoldPerMinute:   number;
   readonly avgVisionScore:     number;
@@ -15,6 +16,8 @@ export interface AveragePlayerStatistic {
   readonly redWinRate:         number;
   readonly avgKillParticipation: number | null;
   readonly avgGoldShare: number | null;
+  readonly avgDamageShare?: number
+
 }
 
 
