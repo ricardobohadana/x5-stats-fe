@@ -144,7 +144,7 @@ export const LaneLeaderboard: React.FC<LaneLeaderboardProps> = ({
                 {((stat.avgGoldShare ?? 0) * 100).toFixed(0)} %
               </td>
               <td className="whitespace-nowrap text-right">
-                {stat.avgCsPerMinute.toFixed(0)}/min
+                {stat.avgCsPerMinute.toFixed(2)}/min
               </td>
               <td className="whitespace-nowrap text-right">
                 {stat.avgGoldPerMinute.toFixed(0)}/min
