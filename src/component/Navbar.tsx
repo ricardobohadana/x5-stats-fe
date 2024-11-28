@@ -85,7 +85,7 @@ export const Navbar: React.FC = () => {
                 : "text-gray-800 hover:text-blue-600"
             }`}
           >
-            Cmapeões
+            Campeões
           </Link>
           <Link
             to="/new"
