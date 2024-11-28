@@ -11,6 +11,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import LoadingOverlay from "./component/LoadingOverlay"
 import { useGlobalStore } from "./stores/store"
 import { ErrorOverlay } from "./component/ErrorOverlay"
+import { Champions } from "./pages/Champions"
 
 const queryClient = new QueryClient()
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/new" element={<NewGame />} />
             <Route path="/new-player" element={<NewPlayer />} />
+            <Route path="/champions" element={<Champions />} />
             <Route
               path="*"
               element={

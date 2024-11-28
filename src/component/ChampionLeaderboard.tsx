@@ -1,21 +1,23 @@
 import { useEffect, useState } from "react"
 import { AveragePlayerStatistic } from "../types/average-player-statistic"
-import { Player } from "../types/player"
+import { AverageChampionStatistic } from "../types/average-champion-statistic"
+import { getChampionIconUrl } from "../api/cdn"
+import { Champion } from "../types/champions"
 
-interface LaneLeaderboardProps {
-  playersMap: Record<string, Player>
-  stats: AveragePlayerStatistic[]
+interface ChampionLeaderboardProps {
+  stats: AverageChampionStatistic[]
   title: string
+  championsMap: Record<number, Champion>
 }
 
-export const LaneLeaderboard: React.FC<LaneLeaderboardProps> = ({
-  playersMap,
+export const ChampionLeaderboard: React.FC<ChampionLeaderboardProps> = ({
   stats,
   title,
+  championsMap,
 }) => {
-  const [sortedStats, setSortedStats] = useState<AveragePlayerStatistic[]>([])
+  const [sortedStats, setSortedStats] = useState<AverageChampionStatistic[]>([])
   const [sortConfig, setSortConfig] = useState<{
-    key: keyof Omit<AveragePlayerStatistic, "gameLane" | "playerId">
+    key: keyof Omit<AverageChampionStatistic, "gameLane" | "championId">
     direction: "asc" | "desc"
   } | null>(null)
 
@@ -24,7 +26,7 @@ export const LaneLeaderboard: React.FC<LaneLeaderboardProps> = ({
   }, [stats])
 
   const sortData = (
-    key: keyof Omit<AveragePlayerStatistic, "gameLane" | "playerId">
+    key: keyof Omit<AverageChampionStatistic, "gameLane" | "championId">
   ) => {
     let direction: "asc" | "desc" = "desc"
     if (
@@ -69,7 +71,7 @@ export const LaneLeaderboard: React.FC<LaneLeaderboardProps> = ({
               scope="col"
               className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
-              Jogador
+              Campeão
             </th>
             {[
               { key: "appearances", label: "Partidas" },
@@ -110,9 +112,17 @@ export const LaneLeaderboard: React.FC<LaneLeaderboardProps> = ({
           {sortedStats
             ?.slice(0, Math.min(5, sortedStats.length))
             .map((stat) => (
-              <tr key={stat.playerId}>
+              <tr key={stat.championId}>
                 <td className="whitespace-nowrap">
-                  {playersMap?.[stat.playerId]?.gamerTag}
+                  <div className="flex flex-row justify-around">
+                    <img
+                      width={25}
+                      height={25}
+                      src={getChampionIconUrl(stat.championId)}
+                      alt=""
+                    />
+                    <span>{championsMap[stat.championId].name}</span>
+                  </div>
                 </td>
                 <td className="whitespace-nowrap text-right">
                   {stat.appearances}

@@ -1,33 +1,19 @@
-export interface AveragePlayerStatistic extends Record<string, unknown> {
-  readonly playerId:           string;
-  readonly gameLane:           string;
-  readonly avgKda:             number;
-  readonly avgGoldPerMinute:   number;
-  readonly avgVisionScore:     number;
-  readonly avgVisionScorePerMinute: number;
-  readonly avgDamagePerMinute: number;
-  readonly avgCsPerMinute:     number;
-  readonly avgKills:           number;
-  readonly avgDeaths:          number;
-  readonly avgAssists:         number;
-  readonly avgDuration:        number;
-  readonly winRate:            number;
-  readonly blueWinRate:        number;
-  readonly redWinRate:         number;
-  readonly avgKillParticipation: number | null;
-  readonly avgGoldShare: number | null;
-  readonly avgDamageShare?: number
+import { AverageStatistic } from "./average-statistic";
 
+export interface AveragePlayerStatistic extends AverageStatistic {
+  readonly playerId:           string;
 }
 
-
 export const isAveragePlayerStatistic = (data: unknown): data is AveragePlayerStatistic => {
+  return isAveragePlayerStatistic(data) && typeof data.playerId === 'string'
+}
+
+export const isAverageStatistic = (data: unknown): data is AverageStatistic => {
   if (typeof data !== 'object' || data === null) {
     return false;
   }
   const obj = data as { [key: string]: unknown };
   return (
-    typeof obj.playerId === "string" &&
     typeof obj.avgKda === "number" &&
     typeof obj.avgGoldPerMinute === "number" &&
     typeof obj.avgVisionScore === "number" &&

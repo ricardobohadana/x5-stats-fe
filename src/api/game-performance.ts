@@ -1,5 +1,7 @@
 // src/api/gamePerformanceService.js
+import { AverageChampionStatistic, isAverageChampionStatistic } from '../types/average-champion-statistic';
 import { GamePerformance } from '../types/game-performance';
+import { Lane } from '../types/lane';
 import { api } from './axios';
 
 export const gamePerformanceService = {
@@ -22,5 +24,28 @@ export const gamePerformanceService = {
     const response = await api.delete(`performances/${id}/`);
     return response.data;
   },
+
+  getAllChampionsStats: async () => {
+    const response = await api.get('champions-stats');
+    if(!Array.isArray(response.data)){
+      throw new Error('Invalid player stats array');
+    }
+
+    if(!response.data.every(isAverageChampionStatistic)){
+      throw new Error('Invalid player stats data');
+    }
+    return response.data;
+  },
+
+  getAllChampionsLaneStats: async () => {
+    const response = await api.get('champions-lane-stats');
+    if (typeof response.data !== 'object')
+      throw new Error('Invalid player stats array');
+
+    if(!Object.values(Lane).every((role) => Array.isArray(response.data[role]) && response.data[role].every(isAverageChampionStatistic)))
+      throw new Error('Invalid player stats data');
+
+    return response.data as Record<Lane, AverageChampionStatistic[]>;
+  }
 };
 

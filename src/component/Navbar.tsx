@@ -78,6 +78,16 @@ export const Navbar: React.FC = () => {
       <div id="mobile-menu" className="md:hidden hidden">
         <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
           <Link
+            to="/champions"
+            className={`block px-3 py-2 rounded-md text-base font-medium ${
+              isActive("/champions")
+                ? "text-blue-600 font-semibold"
+                : "text-gray-800 hover:text-blue-600"
+            }`}
+          >
+            Cmapeões
+          </Link>
+          <Link
             to="/new"
             className={`block px-3 py-2 rounded-md text-base font-medium ${
               isActive("/new")
