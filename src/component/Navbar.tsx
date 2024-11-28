@@ -21,6 +21,16 @@ export const Navbar: React.FC = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-4">
             <Link
+              to="/champions"
+              className={`px-3 py-2 rounded-md text-sm font-medium ${
+                isActive("/new")
+                  ? "text-blue-600 font-semibold"
+                  : "text-gray-800 hover:text-blue-600"
+              }`}
+            >
+              Campeões
+            </Link>
+            <Link
               to="/new"
               className={`px-3 py-2 rounded-md text-sm font-medium ${
                 isActive("/new")
