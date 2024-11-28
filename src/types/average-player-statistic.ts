@@ -5,7 +5,7 @@ export interface AveragePlayerStatistic extends AverageStatistic {
 }
 
 export const isAveragePlayerStatistic = (data: unknown): data is AveragePlayerStatistic => {
-  return isAveragePlayerStatistic(data) && typeof data.playerId === 'string'
+  return isAverageStatistic(data) && typeof data.playerId === 'string'
 }
 
 export const isAverageStatistic = (data: unknown): data is AverageStatistic => {
