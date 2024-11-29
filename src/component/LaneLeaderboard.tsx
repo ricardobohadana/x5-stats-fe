@@ -84,8 +84,6 @@ export const LaneLeaderboard: React.FC<LaneLeaderboardProps> = ({
               { key: "avgGoldPerMinute", label: "Ouro/min" },
               { key: "avgDamagePerMinute", label: "Dano/min" },
               { key: "winRate", label: "% Vitória" },
-              { key: "blueWinRate", label: "% Vit. - Azul" },
-              { key: "redWinRate", label: "% Vit. - Verm." },
             ].map(({ key, label }) => (
               <th
                 key={key}
@@ -153,12 +151,6 @@ export const LaneLeaderboard: React.FC<LaneLeaderboardProps> = ({
                 </td>
                 <td className="whitespace-nowrap text-right">
                   {(stat.winRate * 100).toFixed(0)}%
-                </td>
-                <td className="whitespace-nowrap text-right">
-                  {(stat.blueWinRate * 100).toFixed(0)}%
-                </td>
-                <td className="whitespace-nowrap text-right">
-                  {(stat.redWinRate * 100).toFixed(0)}%
                 </td>
               </tr>
             ))}
