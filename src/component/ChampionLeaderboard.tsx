@@ -112,7 +112,7 @@ export const ChampionLeaderboard: React.FC<ChampionLeaderboardProps> = ({
             .map((stat) => (
               <tr key={stat.championId}>
                 <td className="whitespace-nowrap">
-                  <div className="flex flex-row justify-around">
+                  <div className="flex flex-row justify-start gap-1">
                     <img
                       width={25}
                       height={25}
